@@ -4,16 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spotify Love 💖</title>
+
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #ff5f9e, #ff9a9e);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
     .container {
       background: #fff;
       width: 100%;
@@ -22,16 +24,19 @@
       padding: 24px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
+
     h1 {
       text-align: center;
       color: #ff3f7f;
       margin-bottom: 20px;
     }
+
     label {
       font-weight: bold;
       display: block;
       margin-top: 12px;
     }
+
     input, textarea, select {
       width: 100%;
       padding: 10px;
@@ -40,9 +45,11 @@
       border: 1px solid #ccc;
       font-size: 14px;
     }
+
     textarea {
       resize: none;
     }
+
     button {
       width: 100%;
       margin-top: 20px;
@@ -54,11 +61,13 @@
       font-size: 16px;
       cursor: pointer;
     }
+
     button:hover {
       background: #e6326d;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1>Spotify Love 💖</h1>
@@ -83,7 +92,7 @@
       <option value="spotify">Spotify Love</option>
       <option value="carta">Carta Romântica</option>
       <option value="fofo">Fofo com Corações</option>
-    }</n    </select>
+    </select>
 
     <button onclick="salvarDados()">Finalizar surpresa 💝</button>
   </div>
@@ -95,6 +104,11 @@
       const mensagem = document.getElementById('mensagem').value;
       const musica = document.getElementById('musica').value;
       const layout = document.getElementById('layout').value;
+
+      if (!de || !para || !mensagem || !musica) {
+        alert('Por favor, preencha todos os campos ❤️');
+        return;
+      }
 
       localStorage.setItem('de', de);
       localStorage.setItem('para', para);
