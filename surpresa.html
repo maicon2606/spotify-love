@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surpresa 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+    }
+    .card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    .names {
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+    .message {
+      background: rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+      font-size: 15px;
+    }
+    .music {
+      margin-top: 14px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    .heart {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>💌 Para a mulher que vou amar em 2026</h1>
+    <div class="heart">❤️</div>
+    <div class="names" id="names"></div>
+    <div class="message" id="mensagem"></div>
+    <div class="music" id="musica"></div>
+  </div>
+
+  <script>
+    if (localStorage.getItem('pagamento_status') !== 'aprovado') {
+      alert('Acesso não autorizado');
+      window.location.href = 'form-spotify.html';
+    }
+
+    const de = localStorage.getItem('de') || '';
+    const para = localStorage.getItem('para') || '';
+    const mensagem = localStorage.getItem('mensagem') || '';
+    const musica = localStorage.getItem('musica') || '';
+
+    document.getElementById('names').innerText = `${de} 💖 ${para}`;
+    document.getElementById('mensagem').innerText = mensagem;
+    document.getElementById('musica').innerText = `🎵 Música: ${musica}`;
+  </script>
+</body>
+</html>
