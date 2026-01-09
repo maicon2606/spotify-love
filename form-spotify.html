@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify Love 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff5f9e, #ff9a9e);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: #fff;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #ff3f7f;
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 12px;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    textarea {
+      resize: none;
+    }
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background: #ff3f7f;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e6326d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Spotify Love 💖</h1>
+
+    <label>📸 Foto do casal</label>
+    <input type="file" id="foto" accept="image/*" />
+
+    <label>💌 Nome de quem envia</label>
+    <input type="text" id="de" placeholder="Seu nome" />
+
+    <label>💖 Nome de quem recebe</label>
+    <input type="text" id="para" placeholder="Nome do amor" />
+
+    <label>✍️ Mensagem</label>
+    <textarea id="mensagem" rows="4" placeholder="Escreva algo especial..."></textarea>
+
+    <label>🎵 Música (Spotify)</label>
+    <input type="text" id="musica" placeholder="Ex: Jorge & Mateus - Amo Noite e Dia" />
+
+    <label>🎨 Escolha o layout</label>
+    <select id="layout">
+      <option value="spotify">Spotify Love</option>
+      <option value="carta">Carta Romântica</option>
+      <option value="fofo">Fofo com Corações</option>
+    }</n    </select>
+
+    <button onclick="salvarDados()">Finalizar surpresa 💝</button>
+  </div>
+
+  <script>
+    function salvarDados() {
+      const de = document.getElementById('de').value;
+      const para = document.getElementById('para').value;
+      const mensagem = document.getElementById('mensagem').value;
+      const musica = document.getElementById('musica').value;
+      const layout = document.getElementById('layout').value;
+
+      localStorage.setItem('de', de);
+      localStorage.setItem('para', para);
+      localStorage.setItem('mensagem', mensagem);
+      localStorage.setItem('musica', musica);
+      localStorage.setItem('layout', layout);
+
+      window.location.href = 'pagamento.html';
+    }
+  </script>
+</body>
+</html>
