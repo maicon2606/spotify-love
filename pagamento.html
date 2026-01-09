@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagamento • Spotify Love</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1db954, #1ed760);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .box {
+      background: #fff;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.2);
+      text-align: center;
+    }
+    h1 {
+      color: #1db954;
+      margin-bottom: 10px;
+    }
+    .price {
+      font-size: 32px;
+      font-weight: bold;
+      margin: 16px 0;
+    }
+    .info {
+      font-size: 14px;
+      color: #555;
+    }
+    button {
+      margin-top: 22px;
+      width: 100%;
+      padding: 14px;
+      background: #1db954;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #169c46;
+    }
+    .back {
+      margin-top: 16px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Finalizar Surpresa 💖</h1>
+    <p class="info">Sua página romântica personalizada</p>
+
+    <div class="price">R$ 9,99</div>
+
+    <p class="info">Pagamento de teste (nenhum valor será cobrado)</p>
+
+    <button onclick="pagarTeste()">Pagar com PIX (teste)</button>
+
+    <div class="back" onclick="voltar()">← Voltar e editar</div>
+  </div>
+
+  <script>
+    function pagarTeste() {
+      localStorage.setItem('pagamento_status', 'aprovado');
+      window.location.href = 'surpresa.html';
+    }
+
+    function voltar() {
+      window.location.href = 'form-spotify.html';
+    }
+  </script>
+</body>
+</html>
