@@ -8,63 +8,82 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ff5f9e, #ff9a9e);
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(135deg, #f8c9d7, #f0e6f7);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      color: #333;
     }
 
     .container {
       background: #fff;
       width: 100%;
       max-width: 420px;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border-radius: 18px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
       color: #ff3f7f;
-      margin-bottom: 20px;
+      font-family: 'Dancing Script', cursive;
+      margin-bottom: 30px;
+      font-size: 36px;
     }
 
     label {
       font-weight: bold;
+      font-size: 16px;
+      margin-top: 20px;
       display: block;
-      margin-top: 12px;
+      color: #ff3f7f;
     }
 
     input, textarea, select {
       width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      border-radius: 8px;
+      padding: 12px;
+      margin-top: 8px;
+      border-radius: 12px;
       border: 1px solid #ccc;
-      font-size: 14px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #ff3f7f;
+      outline: none;
     }
 
     textarea {
       resize: none;
+      height: 120px;
     }
 
     button {
       width: 100%;
-      margin-top: 20px;
-      padding: 12px;
+      padding: 15px;
+      margin-top: 25px;
       background: #ff3f7f;
       color: #fff;
       border: none;
-      border-radius: 10px;
-      font-size: 16px;
+      border-radius: 20px;
+      font-size: 18px;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
 
     button:hover {
-      background: #e6326d;
+      background-color: #e6326d;
     }
+
+    .icon {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
   </style>
 </head>
 
@@ -72,29 +91,29 @@
   <div class="container">
     <h1>Spotify Love 💖</h1>
 
-    <label>📸 Foto do casal</label>
+    <label for="foto">📸 Foto do Casal</label>
     <input type="file" id="foto" accept="image/*" />
 
-    <label>💌 Nome de quem envia</label>
+    <label for="de">💌 Nome de quem envia</label>
     <input type="text" id="de" placeholder="Seu nome" />
 
-    <label>💖 Nome de quem recebe</label>
-    <input type="text" id="para" placeholder="Nome do amor" />
+    <label for="para">💖 Nome de quem recebe</label>
+    <input type="text" id="para" placeholder="Nome do seu amor" />
 
-    <label>✍️ Mensagem</label>
-    <textarea id="mensagem" rows="4" placeholder="Escreva algo especial..."></textarea>
+    <label for="mensagem">✍️ Mensagem de Amor</label>
+    <textarea id="mensagem" placeholder="Diga o que sente..." rows="4"></textarea>
 
-    <label>🎵 Música (Spotify)</label>
+    <label for="musica">🎵 Música (Spotify)</label>
     <input type="text" id="musica" placeholder="Ex: Jorge & Mateus - Amo Noite e Dia" />
 
-    <label>🎨 Escolha o layout</label>
+    <label for="layout">🎨 Escolha o Layout</label>
     <select id="layout">
       <option value="spotify">Spotify Love</option>
       <option value="carta">Carta Romântica</option>
       <option value="fofo">Fofo com Corações</option>
     </select>
 
-    <button onclick="salvarDados()">Finalizar surpresa 💝</button>
+    <button onclick="salvarDados()">Criar Minha Surpresa 💖</button>
   </div>
 
   <script>
