@@ -18,7 +18,7 @@
       flex-direction: column;
     }
 
-    /* Corações Flutuantes na Tela Inteira */
+    /* Corações Flutuantes */
     .hearts {
       position: absolute;
       bottom: -50px;
@@ -125,9 +125,9 @@
   <div class="popup-background" id="popupBackground">
     <div class="carta-aberta" id="cartaAberta">
       <h2>Surpresa Romântica 💖</h2>
-      <p><strong>De:</strong> [Seu Nome]</p>
-      <p><strong>Para:</strong> [Nome do Amor]</p>
-      <p><strong>Mensagem:</strong> [Texto da Mensagem]</p>
+      <p><strong>De:</strong> <span id="deNome"></span></p>
+      <p><strong>Para:</strong> <span id="paraNome"></span></p>
+      <p><strong>Mensagem:</strong> <span id="mensagemTexto"></span></p>
     </div>
   </div>
 
@@ -141,15 +141,40 @@
       document.getElementById('popupBackground').classList.add('active');
       document.getElementById('musicaEmbed').classList.add('active');
 
+      // Puxa os dados do localStorage e exibe na carta
+      document.getElementById('deNome').textContent = localStorage.getItem('de');
+      document.getElementById('paraNome').textContent = localStorage.getItem('para');
+      document.getElementById('mensagemTexto').textContent = localStorage.getItem('mensagem');
+
       // Link do YouTube
-      const musicaUrl = 'https://www.youtube.com/embed/TuVv6A9ZtO0?autoplay=1'; // Troque pelo link desejado
+      const musicaUrl = localStorage.getItem('musica'); // Usa a música salva no localStorage
       document.getElementById('musicaEmbed').innerHTML = `
-        <iframe width="100%" height="315" src="${musicaUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="100%" height="315" src="${musicaUrl}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       `;
     }
 
-    // Inicializa a animação da carta fechada
-    document.querySelector('.carta-fechada').addEventListener('click', abrirCarta);
+    // Salva os dados no localStorage quando o formulário for enviado
+    function salvarDados() {
+      const de = document.getElementById('de').value;
+      const para = document.getElementById('para').value;
+      const mensagem = document.getElementById('mensagem').value;
+      const musica = document.getElementById('musica').value;
+      const layout = document.getElementById('layout').value;
+
+      if (!de || !para || !mensagem || !musica) {
+        alert('Por favor, preencha todos os campos ❤️');
+        return;
+      }
+
+      // Salva os dados no localStorage
+      localStorage.setItem('de', de);
+      localStorage.setItem('para', para);
+      localStorage.setItem('mensagem', mensagem);
+      localStorage.setItem('musica', musica);
+      localStorage.setItem('layout', layout);
+
+      window.location.href = 'surpresa.html'; // Redireciona para a página de surpresa
+    }
   </script>
 </body>
 </html>
