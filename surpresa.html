@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Surpresa Romântica 💖</title>
   <style>
+    /* Estilos básicos da carta e fundo */
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
@@ -13,9 +14,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #333;
-      overflow: hidden;
       flex-direction: column;
+      color: #333;
     }
 
     /* Corações Flutuantes */
@@ -153,28 +153,13 @@
       `;
     }
 
-    // Salva os dados no localStorage quando o formulário for enviado
-    function salvarDados() {
-      const de = document.getElementById('de').value;
-      const para = document.getElementById('para').value;
-      const mensagem = document.getElementById('mensagem').value;
-      const musica = document.getElementById('musica').value;
-      const layout = document.getElementById('layout').value;
-
-      if (!de || !para || !mensagem || !musica) {
-        alert('Por favor, preencha todos os campos ❤️');
-        return;
+    // Recupera o layout escolhido e exibe a carta romântica
+    document.addEventListener("DOMContentLoaded", function() {
+      const layoutEscolhido = localStorage.getItem('layout');
+      if (layoutEscolhido === 'carta-romantica') {
+        abrirCarta();
       }
-
-      // Salva os dados no localStorage
-      localStorage.setItem('de', de);
-      localStorage.setItem('para', para);
-      localStorage.setItem('mensagem', mensagem);
-      localStorage.setItem('musica', musica);
-      localStorage.setItem('layout', layout);
-
-      window.location.href = 'surpresa.html'; // Redireciona para a página de surpresa
-    }
+    });
   </script>
 </body>
 </html>
