@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fofo com Corações 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+
+    .container {
+      background: #fff;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 18px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #ff3f7f;
+      font-family: 'Dancing Script', cursive;
+      margin-bottom: 20px;
+      font-size: 36px;
+    }
+
+    .heart-icon {
+      font-size: 50px;
+      color: #ff3f7f;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 12px;
+      border: 1px solid #ff3f7f;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+
+    .hearts {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 24px;
+      color: #ff3f7f;
+      animation: hearts 2s infinite;
+    }
+
+    @keyframes hearts {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Fofo com Corações 💖</h1>
+    <div class="heart-icon">💖</div>
+    <div class="message">
+      <p><strong>De:</strong> [Seu Nome]</p>
+      <p><strong>Para:</strong> [Nome do Amor]</p>
+      <p><strong>Mensagem:</strong> [Texto da Mensagem]</p>
+    </div>
+    <div class="hearts">❤️❤️❤️</div>
+  </div>
+</body>
+</html>
