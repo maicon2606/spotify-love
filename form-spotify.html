@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Formulário de Surpresa 💖</title>
   <style>
-    /* Estilos básicos do formulário */
     body {
       font-family: Arial, sans-serif;
       background-color: #f0e6f7;
@@ -86,7 +85,7 @@
   </div>
 
   <script>
-    // Função para salvar os dados no localStorage
+    // Função para salvar os dados no localStorage e redirecionar para o pagamento
     function salvarDados() {
       const de = document.getElementById('de').value;
       const para = document.getElementById('para').value;
@@ -106,8 +105,8 @@
       localStorage.setItem('musica', musica);
       localStorage.setItem('layout', layout);
 
-      // Redireciona para a página de surpresa
-      window.location.href = 'surpresa.html';
+      // Redireciona para a página de pagamento
+      window.location.href = 'pagamento.html';
     }
   </script>
 </body>
