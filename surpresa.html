@@ -18,19 +18,20 @@
       flex-direction: column;
     }
 
-    /* Corações Flutuantes */
+    /* Corações Flutuantes na Tela Inteira */
     .hearts {
       position: absolute;
-      bottom: 0;
+      bottom: -50px;
       left: 0;
       font-size: 24px;
       color: #ff3f7f;
-      animation: hearts 3s infinite;
+      animation: hearts 5s infinite;
+      z-index: -1;
     }
 
     @keyframes hearts {
       0% { transform: translateY(0); opacity: 1; }
-      50% { transform: translateY(-50px); opacity: 0.5; }
+      50% { transform: translateY(-100px); opacity: 0.5; }
       100% { transform: translateY(0); opacity: 1; }
     }
 
@@ -46,6 +47,7 @@
       align-items: center;
       cursor: pointer;
       transition: transform 0.5s ease;
+      position: relative;
     }
 
     .carta-fechada:hover {
@@ -69,9 +71,28 @@
       align-items: center;
       flex-direction: column;
       padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
     }
 
     .carta-aberta.active {
+      display: flex;
+    }
+
+    /* Estilo para a camada de fundo do pop-up */
+    .popup-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7); /* Fundo escuro */
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-background.active {
       display: flex;
     }
 
@@ -86,11 +107,12 @@
     #musicaEmbed.active {
       height: 315px;
     }
+
   </style>
 </head>
 
 <body>
-  <!-- Corações Subindo -->
+  <!-- Corações Subindo pela Tela -->
   <div class="hearts">❤️❤️❤️</div>
 
   <!-- Carta Fechada -->
@@ -99,21 +121,24 @@
     <p>Clique para abrir a surpresa!</p>
   </div>
 
-  <!-- Carta Aberta -->
-  <div class="carta-aberta" id="cartaAberta">
-    <h2>Surpresa Romântica 💖</h2>
-    <p><strong>De:</strong> [Seu Nome]</p>
-    <p><strong>Para:</strong> [Nome do Amor]</p>
-    <p><strong>Mensagem:</strong> [Texto da Mensagem]</p>
+  <!-- Camada de fundo do pop-up -->
+  <div class="popup-background" id="popupBackground">
+    <div class="carta-aberta" id="cartaAberta">
+      <h2>Surpresa Romântica 💖</h2>
+      <p><strong>De:</strong> [Seu Nome]</p>
+      <p><strong>Para:</strong> [Nome do Amor]</p>
+      <p><strong>Mensagem:</strong> [Texto da Mensagem]</p>
+    </div>
   </div>
 
   <!-- Música do YouTube -->
   <div id="musicaEmbed"></div>
-  
+
   <script>
-    // Função para abrir a carta
+    // Função para abrir a carta e mostrar a surpresa
     function abrirCarta() {
       document.getElementById('cartaAberta').classList.add('active');
+      document.getElementById('popupBackground').classList.add('active');
       document.getElementById('musicaEmbed').classList.add('active');
 
       // Link do YouTube
