@@ -34,7 +34,7 @@
       100% { transform: translateY(0); opacity: 1; }
     }
 
-    /* Estilo da Carta Fechada */
+    /* Estilo da Carta Fechada (visível antes do clique) */
     .carta-fechada {
       width: 300px;
       height: 400px;
@@ -58,7 +58,7 @@
       color: #ff3f7f;
     }
 
-    /* Estilo da Carta Aberta */
+    /* Estilo da Carta Aberta (inicialmente oculta) */
     .carta-aberta {
       width: 300px;
       height: 400px;
@@ -75,7 +75,7 @@
     }
 
     .carta-aberta.active {
-      display: flex;
+      display: flex; /* Torna a carta visível após o clique */
     }
 
     /* Estilo para a camada de fundo do pop-up */
@@ -132,7 +132,7 @@
   <!-- Corações Subindo pela Tela -->
   <div class="hearts">❤️❤️❤️</div>
 
-  <!-- Carta Fechada -->
+  <!-- Carta Fechada (visível inicialmente) -->
   <div class="carta-fechada" onclick="abrirCarta()">
     <div class="icon">📜</div>
     <p>Clique para abrir a surpresa!</p>
@@ -154,6 +154,7 @@
   <script>
     // Função para abrir a carta e mostrar a surpresa
     function abrirCarta() {
+      // Torna a carta visível e exibe a camada de fundo (pop-up)
       document.getElementById('cartaAberta').classList.add('active');
       document.getElementById('popupBackground').classList.add('active');
       document.getElementById('musicaEmbed').classList.add('active');
