@@ -89,6 +89,32 @@
       height: 380px;
       border: none;
     }
+
+    /* Estilos específicos dos layouts */
+    .carta-romantica {
+      background: #fff;
+      border: 2px solid #ff3f7f;
+      padding: 30px;
+      border-radius: 18px;
+      text-align: center;
+    }
+
+    .fofo-com-coracoes {
+      background: rgba(255, 192, 203, 0.7);
+      border-radius: 18px;
+      padding: 30px;
+      font-size: 18px;
+      color: #ff3f7f;
+      position: relative;
+    }
+
+    .hearts {
+      font-size: 30px;
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+    }
+
   </style>
 </head>
 
@@ -112,15 +138,17 @@
     <input type="text" id="musica" placeholder="Cole o link do YouTube ou Spotify aqui" />
 
     <label for="layout">🎨 Escolha o Layout</label>
-    <select id="layout">
+    <select id="layout" onchange="mostrarLayout()">
       <option value="spotify">Spotify Love</option>
-      <option value="carta">Carta Romântica</option>
-      <option value="fofo">Fofo com Corações</option>
+      <option value="carta-romantica">Carta Romântica</option>
+      <option value="fofo-com-coracoes">Fofo com Corações</option>
     </select>
 
     <button onclick="salvarDados()">Criar Minha Surpresa 💖</button>
 
     <div id="musicaEmbed"></div>
+
+    <div id="layoutContainer"></div> <!-- Aqui será inserido o layout dinâmico -->
   </div>
 
   <script>
@@ -145,35 +173,46 @@
       window.location.href = 'pagamento.html';
     }
 
-    function tocarMusica() {
-      const musicaUrl = document.getElementById('musica').value;
-      let embedHtml = '';
+    function mostrarLayout() {
+      const layoutEscolhido = document.getElementById('layout').value;
+      const de = document.getElementById('de').value;
+      const para = document.getElementById('para').value;
+      const mensagem = document.getElementById('mensagem').value;
+      const musica = document.getElementById('musica').value;
 
-      // Verifica se é um link do YouTube
-      if (musicaUrl.includes('youtube.com')) {
-        const videoId = musicaUrl.split('v=')[1].split('&')[0]; // Extrai o ID do vídeo
-        embedHtml = `
-          <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      let layoutHtml = '';
+      
+      if (layoutEscolhido === 'carta-romantica') {
+        layoutHtml = `
+          <div class="carta-romantica">
+            <h2>Carta Romântica 💖</h2>
+            <p><strong>De:</strong> ${de}</p>
+            <p><strong>Para:</strong> ${para}</p>
+            <p><strong>Mensagem:</strong> ${mensagem}</p>
+          </div>
         `;
-      }
-
-      // Verifica se é um link do Spotify
-      else if (musicaUrl.includes('spotify.com')) {
-        const spotifyId = musicaUrl.split('track/')[1].split('?')[0]; // Extrai o ID da música
-        embedHtml = `
-          <iframe src="https://open.spotify.com/embed/track/${spotifyId}?autoplay=1" frameborder="0" allow="encrypted-media"></iframe>
+      } else if (layoutEscolhido === 'fofo-com-coracoes') {
+        layoutHtml = `
+          <div class="fofo-com-coracoes">
+            <h2>Fofo com Corações 💖</h2>
+            <p><strong>De:</strong> ${de}</p>
+            <p><strong>Para:</strong> ${para}</p>
+            <p><strong>Mensagem:</strong> ${mensagem}</p>
+            <div class="hearts">❤️❤️❤️</div>
+          </div>
         `;
-      }
-
-      if (embedHtml) {
-        document.getElementById('musicaEmbed').innerHTML = embedHtml; // Exibe o player da música
       } else {
-        alert("Por favor, insira um link válido do YouTube ou Spotify!");
+        layoutHtml = `
+          <h2>Spotify Love 💖</h2>
+          <p><strong>De:</strong> ${de}</p>
+          <p><strong>Para:</strong> ${para}</p>
+          <p><strong>Mensagem:</strong> ${mensagem}</p>
+          <p><strong>Música:</strong> ${musica}</p>
+        `;
       }
-    }
 
-    // Adiciona o player de música assim que o usuário digitar o link e clicar no botão
-    document.getElementById('musica').addEventListener('input', tocarMusica);
+      document.getElementById('layoutContainer').innerHTML = layoutHtml;
+    }
   </script>
 </body>
 </html>
