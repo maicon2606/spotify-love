@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Surpresa Romântica 💖</title>
   <style>
-    /* Estilos básicos da carta e fundo */
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
@@ -108,6 +107,24 @@
       height: 315px;
     }
 
+    /* Estilo da Carta Romântica */
+    .carta-romantica {
+      background-color: #f8d1e3;
+      border: 2px solid #ff3f7f;
+      padding: 30px;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .carta-romantica h2 {
+      color: #ff3f7f;
+      font-size: 28px;
+    }
+
+    .carta-romantica p {
+      font-size: 18px;
+    }
   </style>
 </head>
 
@@ -157,9 +174,23 @@
     document.addEventListener("DOMContentLoaded", function() {
       const layoutEscolhido = localStorage.getItem('layout');
       if (layoutEscolhido === 'carta-romantica') {
-        abrirCarta();
+        mostrarCartaRomantica();
       }
     });
+
+    // Função para mostrar o layout de Carta Romântica
+    function mostrarCartaRomantica() {
+      const cartaRomantica = document.createElement('div');
+      cartaRomantica.classList.add('carta-romantica');
+
+      cartaRomantica.innerHTML = `
+        <h2>Carta Romântica 💖</h2>
+        <p><strong>De:</strong> ${localStorage.getItem('de')}</p>
+        <p><strong>Para:</strong> ${localStorage.getItem('para')}</p>
+        <p><strong>Mensagem:</strong> ${localStorage.getItem('mensagem')}</p>
+      `;
+      document.body.appendChild(cartaRomantica); // Adiciona a carta romântica à página
+    }
   </script>
 </body>
 </html>
