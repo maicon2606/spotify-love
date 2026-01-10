@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spotify Love 💖</title>
-
   <style>
     body {
       margin: 0;
@@ -84,6 +83,12 @@
       margin-right: 10px;
     }
 
+    #musicaEmbed iframe {
+      margin-top: 20px;
+      width: 100%;
+      height: 380px;
+      border: none;
+    }
   </style>
 </head>
 
@@ -103,8 +108,8 @@
     <label for="mensagem">✍️ Mensagem de Amor</label>
     <textarea id="mensagem" placeholder="Diga o que sente..." rows="4"></textarea>
 
-    <label for="musica">🎵 Música (Spotify)</label>
-    <input type="text" id="musica" placeholder="Ex: Jorge & Mateus - Amo Noite e Dia" />
+    <label for="musica">🎵 Música (YouTube ou Spotify)</label>
+    <input type="text" id="musica" placeholder="Cole o link do YouTube ou Spotify aqui" />
 
     <label for="layout">🎨 Escolha o Layout</label>
     <select id="layout">
@@ -114,6 +119,8 @@
     </select>
 
     <button onclick="salvarDados()">Criar Minha Surpresa 💖</button>
+
+    <div id="musicaEmbed"></div>
   </div>
 
   <script>
@@ -137,6 +144,36 @@
 
       window.location.href = 'pagamento.html';
     }
+
+    function tocarMusica() {
+      const musicaUrl = document.getElementById('musica').value;
+      let embedHtml = '';
+
+      // Verifica se é um link do YouTube
+      if (musicaUrl.includes('youtube.com')) {
+        const videoId = musicaUrl.split('v=')[1].split('&')[0]; // Extrai o ID do vídeo
+        embedHtml = `
+          <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        `;
+      }
+
+      // Verifica se é um link do Spotify
+      else if (musicaUrl.includes('spotify.com')) {
+        const spotifyId = musicaUrl.split('track/')[1].split('?')[0]; // Extrai o ID da música
+        embedHtml = `
+          <iframe src="https://open.spotify.com/embed/track/${spotifyId}?autoplay=1" frameborder="0" allow="encrypted-media"></iframe>
+        `;
+      }
+
+      if (embedHtml) {
+        document.getElementById('musicaEmbed').innerHTML = embedHtml; // Exibe o player da música
+      } else {
+        alert("Por favor, insira um link válido do YouTube ou Spotify!");
+      }
+    }
+
+    // Adiciona o player de música assim que o usuário digitar o link e clicar no botão
+    document.getElementById('musica').addEventListener('input', tocarMusica);
   </script>
 </body>
 </html>
