@@ -1,1 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surpresa Romântica 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #333;
+    }
+
+    /* Corações Flutuantes */
+    .hearts {
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      font-size: 24px;
+      color: #ff3f7f;
+      animation: hearts 5s infinite;
+      z-index: -1;
+    }
+
+    @keyframes hearts {
+      0% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(-100px); opacity: 0.5; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Estilo da Carta Fechada */
+    .carta-fechada {
+      width: 300px;
+      height: 400px;
+      background: #f8f1f3;
+      border-radius: 15px;
+      border: 2px solid #ff3f7f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.5s ease;
+      position: relative;
+    }
+
+    .carta-fechada:hover {
+      transform: scale(1.05);
+    }
+
+    .carta-fechada .icon {
+      font-size: 50px;
+      color: #ff3f7f;
+    }
+
+    /* Estilo da Carta Aberta (inicialmente oculta) */
+    .carta-aberta {
+      width: 300px;
+      height: 400px;
+      background: #fff;
+      border-radius: 15px;
+      border: 2px solid #ff3f7f;
+      display: none; /* A carta está oculta inicialmente */
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .carta-aberta.active {
+      display: flex; /* A carta será exibida após o clique */
+    }
+
+    /* Estilo para a camada de fundo do pop-up */
+    .popup-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7); /* Fundo escuro */
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-background.active {
+      display: flex;
+    }
+
+    /* Música do YouTube */
+    #musicaEmbed {
+      width: 100%;
+      height: 0;
+      transition: height 1s ease;
+      margin-top: 20px;
+    }
+
+    #musicaEmbed.active {
+      height: 315px;
+    }
+
+    /* Estilo da Carta Romântica */
+    .carta-romantica {
+      background-color: #f8d1e3;
+      border: 2px solid #ff3f7f;
+      padding: 30px;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .carta-romantica h2 {
+      color: #ff3f7f;
+      font-size: 28px;
+    }
+
+    .carta-romantica p {
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Corações Flutuantes -->
+  <div class="hearts">❤️❤️❤️</div>
+
+  <!-- Carta Fechada (botão de abertura da surpresa) -->
+  <div class="carta-fechada" onclick="abrirCarta()">
+    <div class="icon">📜</div>
+    <p>Clique para abrir a surpresa!</p>
+  </div>
+
+  <!-- Camada de fundo do pop-up -->
+  <div class="popup-background" id="popupBackground">
+    <div class="carta-aberta" id="cartaAberta">
+      <h2>Surpresa Romântica 💖</h2>
+      <p><strong>De:</strong> <span id="deNome"></span></p>
+      <p><strong>Para:</strong> <span id="paraNome"></span></p>
+      <p><strong>Mensagem:</strong> <span id="mensagemTexto"></span></p>
+    </div>
+  </div>
+
+  <!-- Música do YouTube -->
+  <div id="musicaEmbed"></div>
+
+  <script>
+    // Função para abrir a carta e mostrar a surpresa
+    function abrirCarta() {
+      // Torna a carta visível e exibe a camada de fundo (pop-up)
+      document.getElementById('cartaAberta').classList.add('active');
+      document.getElementById('popupBackground').classList.add('active');
+      document.getElementById('musicaEmbed').classList.add('active');
+
+      // Puxa os dados do localStorage e exibe na carta
+      document.getElementById('deNome').textContent = localStorage.getItem('de');
+      document.getElementById('paraNome').textContent = localStorage.getItem('para');
+      document.getElementById('mensagemTexto').textContent = localStorage.getItem('mensagem');
+
+      // Link do YouTube
+      const musicaUrl = localStorage.getItem('musica'); // Usa a música salva no localStorage
+      document.getElementById('musicaEmbed').innerHTML = `
+        <iframe width="100%" height="315" src="${musicaUrl}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      `;
+    }
+
+    // Recupera o layout escolhido e exibe a carta romântica
+    document.addEventListener("DOMContentLoaded", function() {
+      const layoutEscolhido = localStorage.getItem('layout');
+      if (layoutEscolhido === 'carta-romantica') {
+        mostrarCartaRomantica();
+      }
+    });
+
+    // Função para mostrar o layout de Carta Romântica
+    function mostrarCartaRomantica() {
+      const cartaRomantica = document.createElement('div');
+      cartaRomantica.classList.add('carta-romantica');
+
+      cartaRomantica.innerHTML = `
+        <h2>Carta Romântica 💖</h2>
+        <p><strong>De:</strong> ${localStorage.getItem('de')}</p>
+        <p><strong>Para:</strong> ${localStorage.getItem('para')}</p>
+        <p><strong>Mensagem:</strong> ${localStorage.getItem('mensagem')}</p>
+      `;
+      document.body.appendChild(cartaRomantica); // Adiciona a carta romântica à página
+    }
+  </script>
+</body>
+</html>
 
